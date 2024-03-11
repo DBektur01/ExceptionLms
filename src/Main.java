@@ -1,15 +1,70 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Scanner;
+
+/**
+ * @author Bektur Duyshenbek uulu
+ */
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Scanner scanner = new Scanner(System.in);
+        while(true) {
+                System.out.println("""
+                        1.Parallelepiped
+                        2.Cylinder
+                        """);
+                int choice = scanner.nextInt();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
-    }
+                switch (choice) {
+                    case 1 -> {
+                        try {
+                            System.out.print("Write length: ");
+                            int length = scanner.nextInt();
+                            if (length<0){
+                                throw new MyException("Терс сан болбойт ");
+
+                            }
+                            System.out.print("Write width: ");
+                            int width = scanner.nextInt();
+                            if (width<0){
+                                throw new MyException("Терс сан болбойт ");
+                            }
+                            System.out.print("Write height: ");
+                            int height = scanner.nextInt();
+                            if (height<0) {
+                                throw new MyException("Терс сан болбойт ");
+
+                            }
+                            Parallelepiped parallelepiped = new Parallelepiped(length, width, height);
+                            System.out.println("\nParallelepiped Area: " + parallelepiped.ParallelepipedArea());
+                            System.out.println("Parallelepiped Volume:" + parallelepiped.ParallelepipedVolume() + "\n");
+                        } catch (MyException e) {
+                            System.out.println(e.getMessage());
+
+                        }
+                    }
+                    case 2 -> {
+                        try {
+
+                            System.out.print("Write height: ");
+                            int height = scanner.nextInt();
+                            if (height<0){
+                                throw new MyException("Терс сан болбойт ");
+                            }
+
+                            System.out.print("Write radius: ");
+                            int radius = scanner.nextInt();
+                            if (radius < 0) {
+                                throw new MyException("Терс сан болбойт ");
+                            }
+
+                            Cylinder cylinder = new Cylinder(height,radius);
+                            System.out.println("\nCylinder Area: " + cylinder.CylinderArea());
+                            System.out.println("Cylinder Volume: " + cylinder.CylinderVolume() + "\n");
+
+                        } catch (MyException e) {
+                            System.out.println(e.getMessage());
+                        }
+                  }
+              }
+         }
+     }
 }
